@@ -13,7 +13,7 @@ function AirKoreaAccessory(log, config) {
   this.sensor = config.sensor || 'air_quality';
   this.station = config.station;
   this.polling = config.polling || false;
-  this.serial = 'station';
+  this.serial = config.station;
 
   if (!this.key) {
     throw new Error('API key not specified');
