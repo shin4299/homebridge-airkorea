@@ -70,8 +70,43 @@ AirKoreaAccessory.prototype = {
       callback(null, conditions.air_quality);
     });
   },
-
-
+//--------------
+ getPM25: function (callback) {
+    this.getData(function (conditions) {
+      callback(null, conditions.pm25);
+    });
+  },
+ 
+ getPM10: function (callback) {
+    this.getData(function (conditions) {
+      callback(null, conditions.pm10);
+    });
+  },
+  
+ getCo: function (callback) {
+    this.getData(function (conditions) {
+      callback(null, conditions.co);
+    });
+  },
+  
+ getO3: function (callback) {
+    this.getData(function (conditions) {
+      callback(null, conditions.o3);
+    });
+  },
+  
+ getNo2: function (callback) {
+    this.getData(function (conditions) {
+      callback(null, conditions.no2);
+    });
+  },
+  
+ getSo2: function (callback) {
+    this.getData(function (conditions) {
+      callback(null, conditions.so2);
+    });
+  },	
+//--------------------------
   getData: function (callback) {
     var that = this;
     var url = 'http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=' + encodeURIComponent(that.station) + 
@@ -209,6 +244,24 @@ AirKoreaAccessory.prototype = {
         this.sensorService
 	  .getCharacteristic(Characteristic.AirQuality)
 	  .on('get', this.getAirQuality.bind(this));
+        this.sensorService
+          .getCharacteristic(Characteristic.PM2_5Density)
+          .on('get', this.getPM25.bind(this));
+        this.sensorService
+          .getCharacteristic(Characteristic.PM10Density)
+          .on('get', this.getPM10.bind(this));
+        this.sensorService
+          .getCharacteristic(Characteristic.OzoneDensity)
+          .on('get', this.getO3.bind(this));
+        this.sensorService
+          .getCharacteristic(Characteristic.CarbonMonoxideLevel)
+          .on('get', this.getCo.bind(this));
+        this.sensorService
+          .getCharacteristic(Characteristic.NitrogenDioxideDensity)
+          .on('get', this.getNo2.bind(this));
+        this.sensorService
+          .getCharacteristic(Characteristic.SulphurDioxideDensity)
+          .on('get', this.getSo2.bind(this));		    
         break;
     }
 
