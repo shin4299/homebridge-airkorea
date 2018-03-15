@@ -124,14 +124,14 @@ AirKoreaAccessory.prototype = {
                         .setValue(that.conditions.no2); 
                     }
                     if (data.list[0].so2Value) {
-               	      that.conditions.no2 = parseFloat(data.list[0].so2Value) * 1000;
+               	      that.conditions.so2 = parseFloat(data.list[0].so2Value) * 1000;
                       that.log.debug('Current SO2 density is: %s', that.conditions.so2);
                       that.sensorService
                         .getCharacteristic(Characteristic.SulphurDioxideDensity)
                         .setValue(that.conditions.so2); 
                     }
                     if (data.list[0].coValue) {
-               	      that.conditions.no2 = parseFloat(data.list[0].coValue);
+               	      that.conditions.co = parseFloat(data.list[0].coValue);
                       that.log.debug('Current CO density is: %s', that.conditions.co);
                       that.sensorService
                         .getCharacteristic(Characteristic.CarbonMonoxideLevel)
